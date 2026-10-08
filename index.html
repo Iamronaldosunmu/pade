@@ -563,7 +563,7 @@ head.addEventListener('keydown',function(e){var d={ArrowRight:5,ArrowUp:5,ArrowL
   if(h){h.setAttribute('aria-label',label);n=words(h)}
   var t=100+Math.min(n,8)*70,
    text=sec.querySelectorAll('.label,.lede,.sub,.lead,.qs,.close .wrap>p,.close .wrap>a'),
-   blocks=sec.querySelectorAll('.stk,.uc,.chat,.bar,.tk');
+   blocks=sec.querySelectorAll('.stk,.uc,.chat,.bar,.tk,.cg>div');
   Array.prototype.forEach.call(text,function(e,i){if(e.closest('.hero'))return;e.classList.add('rv');e.style.setProperty('--d',(e.classList.contains('label')?0:t+i*40)+'ms')});
   Array.prototype.forEach.call(blocks,function(e,i){e.classList.add('rv');if(e.classList.contains('bar')||e.classList.contains('tk'))e.classList.add('fo');e.style.setProperty('--d',(t+280+i*60)+'ms')});
   if(sec.tagName==='FOOTER'){sec.classList.add('rv','fo')}
