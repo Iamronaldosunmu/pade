@@ -432,7 +432,11 @@ head.addEventListener('keydown',function(e){var d={ArrowRight:5,ArrowUp:5,ArrowL
  var NX=null,deck=card.parentNode;function mk(){deck.classList.toggle('hot',mode==='take')}
  function clearReact(){rx.hidden=true;rx.innerHTML='';ch.hidden=false}
  function paint(txt){mk();card.classList.toggle('take',mode==='take');ck.textContent=(mode==='take'?'Hot take':'Conversation card')+' \u00b7 '+(n[mode]<10?'0':'')+n[mode];ct.textContent=txt;ct.classList.toggle('soft',mode==='talk');ch.textContent=mode==='take'?'Agree or disagree, then say why':'Ask it, then answer it yourself';cnt.textContent=H1;
-  if(mode==='take'){ch.hidden=true;rx.hidden=false;rx.innerHTML='';['Agree','Disagree'].forEach(function(l){var b=document.createElement('button');b.type='button';b.textContent=l;b.onclick=function(e){e.stopPropagation();rx.innerHTML='';var p=document.createElement('p');p.textContent=l==='Agree'?'Now tell them why.':'Good. Now convince them.';rx.appendChild(p)};rx.appendChild(b)})}else clearReact()}
+  if(mode==='take'){ch.hidden=true;rx.hidden=false;delete rx.dataset.done;rx.innerHTML='';['Agree','Disagree'].forEach(function(l){var b=document.createElement('button');b.type='button';b.textContent=l;b.onclick=function(e){e.stopPropagation();if(rx.dataset.done)return;rx.dataset.done='1';
+   function show(){rx.innerHTML='';var p=document.createElement('p');p.textContent=l==='Agree'?'Now tell them why.':'Good. Now convince them.';rx.appendChild(p);
+    if(!reduce&&p.animate)p.animate([{opacity:0,filter:'blur(6px)',transform:'translateY(4px)'},{opacity:1,filter:'blur(0)',transform:'none'}],{duration:380,easing:'cubic-bezier(.2,.7,.2,1)'})}
+   if(reduce||!rx.animate){show();return}
+   rx.animate([{opacity:1,filter:'blur(0)'},{opacity:0,filter:'blur(6px)'}],{duration:200,easing:'ease-out',fill:'forwards'}).onfinish=function(){show();rx.getAnimations().forEach(function(a){a.cancel()})}};rx.appendChild(b)})}else clearReact()}
  function shine(){var s=card.querySelector('.sh');if(s&&s.animate)s.animate([{transform:'translateX(-130%)'},{transform:'translateX(130%)'}],{duration:900,delay:420,easing:EZ})}
  /* a flat flip: the card narrows to nothing, swaps face, and widens again (no 3D, so it looks the same in every browser) */
  function tf(y,sx,sy,r){return 'translateY('+y+'px) scale('+sx+','+sy+') rotate('+r+'deg)'}
