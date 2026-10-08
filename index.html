@@ -41,7 +41,7 @@ a{color:inherit}
 .wm i{font-style:normal;color:var(--gold)}
 .label{font:500 12px var(--time);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-muted)}
 .label.g{color:var(--gold)}
-.band{padding-block:clamp(72px,9vw,112px)}
+.band{padding-block:clamp(72px,10vw,144px)}
 
 /* hero */
 header{display:flex;justify-content:space-between;align-items:center;padding-block:22px}
@@ -139,7 +139,7 @@ header .label{color:var(--ink)}
 .cg li small{grid-column:2;padding:4px 0 2px;font:400 16px/1.4 var(--text);letter-spacing:0;color:var(--ink-muted)}
 .co li.x{color:#8b8d96;text-decoration:line-through;text-decoration-color:#d99a1c;text-decoration-thickness:2px}
 .cmp.js .cp2 li{opacity:0;transform:translateY(8px)}.cmp.js .cp2 li.on{opacity:1;transform:none}
-.unl{border-top:1px solid var(--line);background:var(--surface);padding-bottom:clamp(80px,10vw,140px)}
+.unl{border-top:1px solid var(--line);background:var(--surface);padding-bottom:clamp(80px,11vw,168px)}
 .unl .ug{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(28px,5vw,80px);align-items:center}
 .unl .ug>*{min-width:0}
 .unl h2{font-size:clamp(38px,6.4vw,84px);margin-top:14px;overflow-wrap:anywhere}
@@ -179,9 +179,12 @@ header .label{color:var(--ink)}
 .cards .g{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,6vw,96px);align-items:center}
 .cards h2{font-size:clamp(50px,8vw,116px);margin-top:14px}
 .cards .sub{margin-top:20px;font-size:clamp(18px,2vw,23px);line-height:1.4;max-width:23em;color:var(--ink-muted)}
-.tog{display:inline-flex;align-self:center;padding:5px;border-radius:999px;background:var(--surface);border:1px solid var(--line)}
-.tog button{height:44px;padding:0 22px;border:0;border-radius:999px;background:none;color:var(--ink-muted);font:700 16px var(--text);cursor:pointer;transition:background-color .25s,color .25s}
-.tog button[aria-pressed=true]{background:var(--gold);color:var(--ground)}
+.tog{position:relative;display:inline-flex;align-self:center;padding:5px;border-radius:999px;background:var(--surface);border:1px solid var(--line)}
+.tog button{height:44px;padding:0 22px;border:0;border-radius:999px;background:none;color:var(--ink-muted);font:700 16px var(--text);cursor:pointer;transition:color .25s}
+.tog button{position:relative;z-index:1}.tog button[aria-pressed=true]{color:var(--ground)}
+.tog .pill{position:absolute;z-index:0;left:0;top:5px;height:44px;border-radius:999px;background:var(--gold);transition:transform .38s cubic-bezier(.3,.8,.2,1),width .38s cubic-bezier(.3,.8,.2,1)}
+.tog.nopill button[aria-pressed=true]{background:var(--gold)}
+@media(prefers-reduced-motion:reduce){.tog .pill{transition:none}}
 .draw{display:block;margin-top:18px;height:56px;padding:0 32px;border:2px solid var(--ink);border-radius:999px;background:none;color:var(--ink);font:700 17px var(--text);cursor:pointer;transition:transform .15s,background-color .2s,color .2s}
 .draw:hover{background:var(--ink);color:var(--ground);transform:translateY(-2px)}.draw:active{transform:none}
 .deck{position:relative;width:100%;max-width:560px;margin-inline:auto;aspect-ratio:5/4}
@@ -349,7 +352,7 @@ h1,h2{text-wrap:balance}.lede,.lead,.three,.cl2,.sub{text-wrap:pretty}
     <p class="sub">Five minutes is long when you freeze. Draw a conversation card, or one of your hot takes to argue about.</p>
   </div>
   <div class="stk">
-    <div class="tog" role="group" aria-label="Choose a deck"><button type="button" data-mode="talk" aria-pressed="true">Conversation cards</button><button type="button" data-mode="take" aria-pressed="false">Hot takes</button></div>
+    <div class="tog nopill" role="group" aria-label="Choose a deck"><button type="button" data-mode="talk" aria-pressed="true">Conversation cards</button><button type="button" data-mode="take" aria-pressed="false">Hot takes</button></div>
     <div class="deck"><div class="pk pk1" aria-hidden="true"></div><div class="pk pk2" aria-hidden="true"></div>
     <div class="c" id="card" role="button" tabindex="0" aria-label="Draw a card"><span class="cbk" aria-hidden="true"><svg class="bi bq" viewBox="0 0 24 24"><path d="M8.5 9a3.5 3.5 0 1 1 5.2 3c-1.1.7-1.7 1.4-1.7 2.6"/><path d="M12 18.4v.1"/></svg><svg class="bi bh" viewBox="0 0 24 24"><path d="M12 3c1 3 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-6 1-9z"/></svg><span class="tp">Tap to draw</span></span><span class="cf"><span class="k" id="ck"></span><span class="t cd" id="ct" aria-live="polite"></span><span class="h" id="ch"></span><span class="rx" id="rx" hidden></span><i class="sh" aria-hidden="true"></i></span></div>
     </div>
@@ -576,6 +579,15 @@ head.addEventListener('keydown',function(e){var d={ArrowRight:5,ArrowUp:5,ArrowL
   var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){sec.classList.add('go');io.disconnect()}},sec.tagName==='FOOTER'?{threshold:0}:{threshold:.15,rootMargin:'0px 0px -8% 0px'});io.observe(sec)})
 })();
 (function(){Array.prototype.forEach.call(document.querySelectorAll('.qb'),function(b,i){var r=b.parentNode.querySelector('.rp');if(!r)return;r.id='ans'+i;b.setAttribute('aria-controls',r.id)})})();
+(function(){var t=document.querySelector('.tog');if(!t)return;var pill=document.createElement('i');pill.className='pill';pill.setAttribute('aria-hidden','true');t.insertBefore(pill,t.firstChild);
+ var first=true;function place(){var b=t.querySelector('button[aria-pressed=true]');if(!b||!b.offsetWidth)return;
+  if(first){pill.style.transition='none'}pill.style.width=b.offsetWidth+'px';pill.style.transform='translateX('+b.offsetLeft+'px)';
+  if(first){void pill.offsetWidth;pill.style.transition='';first=false}}
+ place();t.classList.remove('nopill');
+ Array.prototype.forEach.call(t.querySelectorAll('button'),function(b){b.addEventListener('click',function(){setTimeout(place,0)})});
+ window.addEventListener('resize',function(){first=true;place()});
+ if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){first=true;place()});
+ if('IntersectionObserver' in window)new IntersectionObserver(function(e){if(e[0].isIntersecting){first=true;place()}}).observe(t)})();
 </script>
 
 </body>
