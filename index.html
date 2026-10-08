@@ -515,7 +515,11 @@ head.addEventListener('keydown',function(e){var d={ArrowRight:5,ArrowUp:5,ArrowL
     var step=Math.min(22,520/ws.length);
     ws.forEach(function(s,i){anims.push(s.animate([{opacity:0,transform:'translateY(5px)',filter:'blur(4px)'},{opacity:1,transform:'none',filter:'blur(0)'}],{duration:300,delay:60+i*step,easing:EZ,fill:'backwards'}))})}}
   b.addEventListener('click',function(){var o=b.getAttribute('aria-expanded')==='true';stop();
-   if(o){b.setAttribute('aria-expanded','false');r.hidden=true;return}
+   if(o){b.setAttribute('aria-expanded','false');
+    if(reduce||!r.animate||r.hidden){r.hidden=true;return}
+    var h=r.offsetHeight;r.style.overflow='hidden';
+    var c=r.animate([{height:h+'px',opacity:1,filter:'blur(0)',marginBottom:'0px',paddingTop:'16px',paddingBottom:'16px'},{height:'0px',opacity:0,filter:'blur(6px)',marginBottom:'-10px',paddingTop:'0px',paddingBottom:'0px'}],{duration:340,easing:EZ,fill:'forwards'});anims.push(c);
+    c.onfinish=function(){r.hidden=true;c.cancel();anims=[];r.style.overflow=''};return}
    b.setAttribute('aria-expanded','true');r.hidden=false;if(reduce)return;r.classList.add('typing');tm=setTimeout(say,480)})})})();
 /* hero: a sped-up round you can play. Profile hidden, buzzer only works when it turns red. */
 (function(){var c=$('call'),ck=$('ck'),cp=$('cp'),cs=$('cs'),bz=$('bz');if(!c)return;
