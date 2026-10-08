@@ -180,9 +180,9 @@ header .label{color:var(--ink)}
 .cards h2{font-size:clamp(50px,8vw,116px);margin-top:14px}
 .cards .sub{margin-top:20px;font-size:clamp(18px,2vw,23px);line-height:1.4;max-width:23em;color:var(--ink-muted)}
 .tog{position:relative;display:inline-flex;align-self:center;padding:5px;border-radius:999px;background:var(--surface);border:1px solid var(--line)}
-.tog button{height:44px;padding:0 22px;border:0;border-radius:999px;background:none;color:var(--ink-muted);font:700 16px var(--text);cursor:pointer;transition:color .25s}
+.tog button{height:44px;padding:0 22px;border:0;border-radius:999px;background:none;color:var(--ink-muted);font:700 16px var(--text);cursor:pointer;transition:color .3s ease .08s}
 .tog button{position:relative;z-index:1}.tog button[aria-pressed=true]{color:var(--ground)}
-.tog .pill{position:absolute;z-index:0;left:0;top:5px;height:44px;border-radius:999px;background:var(--gold);transition:transform .38s cubic-bezier(.3,.8,.2,1),width .38s cubic-bezier(.3,.8,.2,1)}
+.tog .pill{position:absolute;z-index:0;left:0;top:5px;height:44px;border-radius:999px;background:var(--gold);transition:transform .5s cubic-bezier(.23,1,.32,1),width .5s cubic-bezier(.23,1,.32,1)}
 .tog.nopill button[aria-pressed=true]{background:var(--gold)}
 @media(prefers-reduced-motion:reduce){.tog .pill{transition:none}}
 .draw{display:block;margin-top:18px;height:56px;padding:0 32px;border:2px solid var(--ink);border-radius:999px;background:none;color:var(--ink);font:700 17px var(--text);cursor:pointer;transition:transform .15s,background-color .2s,color .2s}
