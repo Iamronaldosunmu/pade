@@ -56,6 +56,14 @@ header .label{color:var(--ink)}
 @keyframes wbin{to{opacity:1;filter:blur(0);transform:none}}
 .fi{opacity:0;animation:fin .8s ease forwards;animation-delay:var(--d,500ms)}@keyframes fin{to{opacity:1}}
 @media(prefers-reduced-motion:reduce){.wi,.fi{animation:none;opacity:1;filter:none;transform:none}}
+/* section entrances: headings blur in word by word, the rest fades up, once, as each section scrolls into view */
+.sw{display:inline-block;opacity:0;filter:blur(14px);transform:translateY(.12em)}
+.go .sw{animation:wbin .9s cubic-bezier(.2,.7,.2,1) both;animation-delay:var(--d,0ms)}
+.rv{opacity:0}
+.go .rv,.go.rv{animation:rvin .8s cubic-bezier(.2,.7,.2,1) both;animation-delay:var(--d,0ms)}
+.go .rv.fo,.go.rv.fo{animation-name:fin}
+@keyframes rvin{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.sw,.rv{opacity:1;filter:none;transform:none}.go .sw,.go .rv,.go.rv{animation:none}}
 .hero .hl .big{font-size:clamp(38px,5.4vw,84px)}
 .gold{color:var(--gold)}
 .chips{display:flex;flex-wrap:wrap;gap:8px 10px;margin-top:clamp(22px,3vw,36px)}
@@ -501,5 +509,24 @@ head.addEventListener('keydown',function(e){var d={ArrowRight:5,ArrowUp:5,ArrowL
   (function tick(now){var dt=Math.min(.25,(now-last)/1000);last=now;
    if(vis&&!document.hidden){t+=dt;var L=10,H=4.5;if(t>=L+H)t=0;var q=Math.min(1,t/L),x=300*q;pg.style.strokeDashoffset=326.7*(1-q);k.textContent=Math.floor(x/60)+':'+('0'+Math.floor(x)%60).slice(-2);li.forEach(function(l,i){l.classList.toggle('on',t>=L+i*.5)})}
    requestAnimationFrame(tick)})(last)})();
+})();
+
+/* section entrances */
+(function(){var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
+ var secs=Array.prototype.slice.call(document.querySelectorAll('section,footer'));
+ function words(h){var n=0;(function walk(node){Array.prototype.slice.call(node.childNodes).forEach(function(c){
+   if(c.nodeType===3){var parts=c.textContent.split(/(\s+)/),f=document.createDocumentFragment();parts.forEach(function(p){if(!p)return;if(/^\s+$/.test(p)){f.appendChild(document.createTextNode(' '));return}var sp=document.createElement('span');sp.className='sw';sp.style.setProperty('--d',(100+n*70)+'ms');sp.textContent=p;n++;f.appendChild(sp)});c.parentNode.replaceChild(f,c)}
+   else if(c.nodeType===1&&c.tagName!=='BR')walk(c)})})(h);return n}
+ secs.forEach(function(sec){
+  var h=sec.querySelector('h2'),label=h&&h.getAttribute('aria-label')||(h&&h.textContent.replace(/\s+/g,' ').trim()),n=0;
+  if(h){h.setAttribute('aria-label',label);n=words(h)}
+  var t=100+Math.min(n,8)*70,
+   text=sec.querySelectorAll('.label,.lede,.sub,.lead,.qs,.close .wrap>p,.close .wrap>a'),
+   blocks=sec.querySelectorAll('.stk,.uc,.chat,.bar,.tk');
+  Array.prototype.forEach.call(text,function(e,i){if(e.closest('.hero'))return;e.classList.add('rv');e.style.setProperty('--d',(e.classList.contains('label')?0:t+i*40)+'ms')});
+  Array.prototype.forEach.call(blocks,function(e,i){e.classList.add('rv');if(e.classList.contains('bar')||e.classList.contains('tk'))e.classList.add('fo');e.style.setProperty('--d',(t+280+i*60)+'ms')});
+  if(sec.tagName==='FOOTER'){sec.classList.add('rv','fo')}
+  if(reduce||!('IntersectionObserver' in window)){sec.classList.add('go');return}
+  var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){sec.classList.add('go');io.disconnect()}},{threshold:.15,rootMargin:'0px 0px -8% 0px'});io.observe(sec)})
 })();
 </script>
