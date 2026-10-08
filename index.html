@@ -265,6 +265,15 @@ footer .wm{font-size:26px;color:var(--ink)}
 @media (max-width:860px){.q .g,.nolist,.cards .g{grid-template-columns:1fr}.row2{grid-template-columns:1fr;gap:2px}}
 @media (max-width:560px){header .label{display:none}}
 @media (prefers-reduced-motion:reduce){*{transition-duration:.01ms!important;scroll-behavior:auto!important}}
+/* phones and small tablets: centre the headlines, intro text and tiles (lists and chat bubbles stay left/right) */
+@media(max-width:860px){
+ .hero .hl{text-align:center}.hero .chips{justify-content:center}.hero .three{margin-inline:auto}
+ .cw{justify-self:center;margin-inline:auto}.cw .demo{text-align:center}
+ .cmp .wrap>.label,.cmp h2,.cmp .lede,.cards .g>div:first-child,.five .wrap>.label,.five h2,.five .lead,.unl .ug>div:first-child,.qh,.close .wrap{text-align:center}
+ .cmp .lede,.cards .sub,.five .lead,.unl .lead,.qh .qs{margin-inline:auto}
+ .unl .uc{margin-inline:auto}
+ footer .wrap{justify-content:center!important;text-align:center}
+}
 </style>
 
 <div class="hero"><div class="wrap">
