@@ -568,7 +568,7 @@ head.addEventListener('keydown',function(e){var d={ArrowRight:5,ArrowUp:5,ArrowL
   Array.prototype.forEach.call(blocks,function(e,i){e.classList.add('rv');if(e.classList.contains('bar')||e.classList.contains('tk'))e.classList.add('fo');e.style.setProperty('--d',(t+280+i*60)+'ms')});
   if(sec.tagName==='FOOTER'){sec.classList.add('rv','fo')}
   if(reduce||!('IntersectionObserver' in window)){sec.classList.add('go');return}
-  var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){sec.classList.add('go');io.disconnect()}},{threshold:.15,rootMargin:'0px 0px -8% 0px'});io.observe(sec)})
+  var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){sec.classList.add('go');io.disconnect()}},sec.tagName==='FOOTER'?{threshold:0}:{threshold:.15,rootMargin:'0px 0px -8% 0px'});io.observe(sec)})
 })();
 (function(){Array.prototype.forEach.call(document.querySelectorAll('.qb'),function(b,i){var r=b.parentNode.querySelector('.rp');if(!r)return;r.id='ans'+i;b.setAttribute('aria-controls',r.id)})})();
 </script>
