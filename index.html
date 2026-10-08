@@ -302,6 +302,13 @@ footer .wm{font-size:26px;color:var(--ink)}
  footer .wrap{justify-content:center!important;text-align:center}
 }
 .hero>.wrap{min-height:100vh;min-height:100svh;display:flex;flex-direction:column}.hero .in{flex:1}
+.snav{position:fixed;z-index:50;top:0;left:0;right:0;background:rgba(11,12,15,.96);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);transform:translateY(-100%);visibility:hidden;transition:transform .45s cubic-bezier(.23,1,.32,1),visibility 0s .45s}
+.snav.on{transform:none;visibility:visible;transition:transform .45s cubic-bezier(.23,1,.32,1),visibility 0s}
+.snav .wrap{display:flex;justify-content:space-between;align-items:center;height:64px}
+.snav .wm{font-size:28px;color:var(--ink);text-decoration:none}
+.snav .toplink{font-size:15px}
+#how{scroll-margin-top:56px}
+@media(prefers-reduced-motion:reduce){.snav,.snav.on{transition:none}}
 .sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 h1,h2{text-wrap:balance}.lede,.lead,.three,.cl2,.sub{text-wrap:pretty}
 #ck,#ht,#u-k,.tk span,.win{font-variant-numeric:tabular-nums}
@@ -309,6 +316,7 @@ h1,h2{text-wrap:balance}.lede,.lead,.three,.cl2,.sub{text-wrap:pretty}
 </head>
 <body>
 
+<nav class="snav" id="snav" aria-label="Primary" inert><div class="wrap"><a class="wm" href="#top"><span class="sr">Pàdé, back to top</span><span aria-hidden="true">P<i>à</i>d<i>é</i></span></a><a class="toplink" href="#how">See how it works</a></div></nav>
 <main id="top">
 <div class="hero"><div class="wrap">
   <header role="banner"><div class="wm"><span class="sr">Pàdé</span><span aria-hidden="true">P<i>à</i>d<i>é</i></span></div><a class="toplink" href="#how">See how it works</a></header>
@@ -592,6 +600,8 @@ head.addEventListener('keydown',function(e){var d={ArrowRight:5,ArrowUp:5,ArrowL
  window.addEventListener('resize',function(){first=true;place()});
  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){first=true;place()});
  if('IntersectionObserver' in window)new IntersectionObserver(function(e){if(e[0].isIntersecting){first=true;place()}}).observe(t)})();
+(function(){var n=document.getElementById('snav'),h=document.querySelector('.hero header');if(!n||!h||!('IntersectionObserver' in window))return;
+ new IntersectionObserver(function(e){var show=!e[0].isIntersecting&&e[0].boundingClientRect.top<0;n.classList.toggle('on',show);if(show)n.removeAttribute('inert');else n.setAttribute('inert','')}).observe(h)})();
 </script>
 
 </body>
