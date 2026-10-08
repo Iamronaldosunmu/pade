@@ -302,12 +302,12 @@ footer .wm{font-size:26px;color:var(--ink)}
  footer .wrap{justify-content:center!important;text-align:center}
 }
 .hero>.wrap{min-height:100vh;min-height:100svh;display:flex;flex-direction:column}.hero .in{flex:1}
-.snav{position:fixed;z-index:50;top:0;left:0;right:0;background:rgba(11,12,15,.96);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);transform:translateY(-100%);visibility:hidden;transition:transform .45s cubic-bezier(.23,1,.32,1),visibility 0s .45s}
-.snav.on{transform:none;visibility:visible;transition:transform .45s cubic-bezier(.23,1,.32,1),visibility 0s}
-.snav .wrap{display:flex;justify-content:space-between;align-items:center;height:64px}
-.snav .wm{font-size:28px;color:var(--ink);text-decoration:none}
-.snav .toplink{font-size:15px}
-#how{scroll-margin-top:56px}
+.snav{position:fixed;z-index:50;top:14px;left:0;right:0;padding-inline:var(--gut);pointer-events:none;transform:translateY(-160%);opacity:0;visibility:hidden;transition:transform .5s cubic-bezier(.23,1,.32,1),opacity .3s ease,visibility 0s .5s}
+.snav.on{transform:none;opacity:1;visibility:visible;transition:transform .5s cubic-bezier(.23,1,.32,1),opacity .3s ease,visibility 0s}
+.snav .wrap{pointer-events:auto;display:flex;justify-content:space-between;align-items:center;gap:24px;height:56px;max-width:560px;padding:0 12px 0 24px;border-radius:999px;background:rgba(21,23,28,.97);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid var(--line);box-shadow:0 12px 40px rgba(0,0,0,.45)}
+.snav .wm{font-size:26px;color:var(--ink);text-decoration:none}
+.snav .toplink{font-size:14px;text-decoration:none;background:var(--gold);color:var(--ground);padding:10px 18px;border-radius:999px;transition:background-color .2s}.snav .toplink:hover{background:var(--ink);color:var(--ground)}
+#how{scroll-margin-top:84px}
 @media(prefers-reduced-motion:reduce){.snav,.snav.on{transition:none}}
 .sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 h1,h2{text-wrap:balance}.lede,.lead,.three,.cl2,.sub{text-wrap:pretty}
