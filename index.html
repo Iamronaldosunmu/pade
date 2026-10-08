@@ -1,4 +1,28 @@
-<title>Pàdé</title>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pàdé: meet someone new in Lagos, five minutes at a time</title>
+<meta name="description" content="A live video game of five-minute conversations. Every Friday, 9 to 10pm Lagos time, you meet a new person every five minutes. Profiles stay hidden until you both want them.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0b0c0f">
+<link rel="canonical" href="https://iamronaldosunmu.github.io/pade/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%2064%2064%27%3E%3Crect%20width=%2764%27%20height=%2764%27%20rx=%2714%27%20fill=%27%230b0c0f%27/%3E%3Ctext%20x=%2732%27%20y=%2747%27%20text-anchor=%27middle%27%20font-family=%27Arial%20Black%2CArial%2Csans-serif%27%20font-weight=%27900%27%20font-size=%2746%27%20fill=%27%23ffc24a%27%3E%C3%A0%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Pàdé">
+<meta property="og:locale" content="en_NG">
+<meta property="og:title" content="Meet someone new in Lagos. Five minutes at a time.">
+<meta property="og:description" content="A live video game of five-minute conversations. Every Friday, 9 to 10pm Lagos time, you meet a new person every five minutes. Profiles stay hidden until you both want them.">
+<meta property="og:url" content="https://iamronaldosunmu.github.io/pade/">
+<meta property="og:image" content="https://iamronaldosunmu.github.io/pade/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Pàdé. Meet someone new in Lagos. Five minutes at a time.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Meet someone new in Lagos. Five minutes at a time.">
+<meta name="twitter:description" content="A live video game of five-minute conversations. Every Friday, 9 to 10pm Lagos time, you meet a new person every five minutes. Profiles stay hidden until you both want them.">
+<meta name="twitter:image" content="https://iamronaldosunmu.github.io/pade/og.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Hanken+Grotesk:wght@400..700&family=DM+Mono:wght@400;500&display=swap">
@@ -52,12 +76,12 @@ header .label{color:var(--ink)}
 
 .hero .in{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:clamp(28px,5vw,80px);align-items:center;max-width:none}
 /* hero entry: words blur in one by one, then the rest fades up */
-.wi{display:inline-block;opacity:0;filter:blur(14px);transform:translateY(.12em);animation:wbin .9s cubic-bezier(.2,.7,.2,1) forwards;animation-delay:calc(var(--i)*90ms + 120ms)}
+.wi{display:inline-block;opacity:0;filter:blur(8px);transform:translateY(.12em);animation:wbin .9s cubic-bezier(.2,.7,.2,1) forwards;animation-delay:calc(var(--i)*90ms + 120ms)}
 @keyframes wbin{to{opacity:1;filter:blur(0);transform:none}}
 .fi{opacity:0;animation:fin .8s ease forwards;animation-delay:var(--d,500ms)}@keyframes fin{to{opacity:1}}
 @media(prefers-reduced-motion:reduce){.wi,.fi{animation:none;opacity:1;filter:none;transform:none}}
 /* section entrances: headings blur in word by word, the rest fades up, once, as each section scrolls into view */
-.sw{display:inline-block;opacity:0;filter:blur(14px);transform:translateY(.12em)}
+.sw{display:inline-block;opacity:0;filter:blur(8px);transform:translateY(.12em)}
 .go .sw{animation:wbin .9s cubic-bezier(.2,.7,.2,1) both;animation-delay:var(--d,0ms)}
 .rv{opacity:0}
 .go .rv,.go.rv{animation:rvin .8s cubic-bezier(.2,.7,.2,1) both;animation-delay:var(--d,0ms)}
@@ -71,18 +95,19 @@ header .label{color:var(--ink)}
 .hero .hl .three{margin-top:clamp(18px,2.4vw,32px);color:var(--ink-muted)}
 .cw{justify-self:end;width:100%;max-width:370px}
 .call{position:relative;aspect-ratio:4/5;width:100%;border-radius:30px;background:#101217;border:1px solid var(--line);overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:22px;--h1:#ffc24a;--h2:#e08a3a;transition:background .25s,border-color .25s,color .25s}
-.cb{position:absolute;inset:0;filter:blur(30px);transition:filter 1.4s ease,opacity .25s}
+.cb{position:absolute;inset:0;filter:blur(30px);transition:opacity .25s}
+.cb.sh{filter:blur(5px);opacity:0;transition:opacity 1.4s ease}
 .bl{position:absolute;border-radius:50%;animation:drift 9s ease-in-out infinite alternate}
 .b1{width:70%;height:56%;left:-8%;top:14%;background:radial-gradient(circle at 45% 45%,var(--h1),transparent 68%)}
 .b2{width:62%;height:48%;right:-12%;bottom:6%;background:radial-gradient(circle at 50% 50%,var(--h2),transparent 68%);animation-delay:-4s;animation-direction:alternate-reverse}
 @keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(9%,-7%) scale(1.12)}}
-.call[data-s=reveal] .cb{filter:blur(5px)}
+.call[data-s=reveal] .cb.sh{opacity:1}
 .call[data-s=live]{background:var(--buzz);border-color:var(--buzz);color:var(--ground)}
-.call[data-s=live] .cb{opacity:0}
-.call.swap .cb{animation:swap .5s ease}
+.call[data-s=live] .cb,.call[data-s=live] .cb.sh{opacity:0;transition:opacity .25s}
+.call.swap .cb:not(.sh){animation:swap .5s ease}
 @keyframes swap{from{opacity:0}to{opacity:1}}
 .ln{position:absolute;left:0;right:0;top:0;height:2px;background:rgba(255,255,255,.1)}
-.ln i{display:block;height:100%;width:0;background:var(--gold)}
+.ln i{display:block;height:100%;width:100%;transform:scaleX(0);transform-origin:left;background:var(--gold)}
 .call[data-s=live] .ln{background:rgba(0,0,0,.18)}.call[data-s=live] .ln i{background:var(--ground)}
 .ct{position:relative;display:flex;justify-content:space-between;align-items:baseline}
 .lv{font:500 12px var(--time);letter-spacing:.14em;text-transform:uppercase;opacity:.7}
@@ -96,7 +121,7 @@ header .label{color:var(--ink)}
 @keyframes nope{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
 .demo{margin-top:12px;font:500 12px var(--time);letter-spacing:.06em;color:var(--ink-muted)}
 @media(max-width:860px){.hero .in{grid-template-columns:1fr}.cw{justify-self:start;max-width:340px}.call{aspect-ratio:1/1}}
-@media(prefers-reduced-motion:reduce){.bl,.call.swap .cb,.call.no .bz,.call[data-s=live] .bz{animation:none}.cb{transition:none}}
+@media(prefers-reduced-motion:reduce){.bl,.call.swap .cb:not(.sh),.call.no .bz,.call[data-s=live] .bz{animation:none}.cb{transition:none}}
 
 /* comparison and unlock */
 .cmp{background:var(--ink);color:var(--ground)}
@@ -274,10 +299,16 @@ footer .wm{font-size:26px;color:var(--ink)}
  .unl .uc{margin-inline:auto}
  footer .wrap{justify-content:center!important;text-align:center}
 }
+.sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+h1,h2{text-wrap:balance}.lede,.lead,.three,.cl2,.sub{text-wrap:pretty}
+#ck,#ht,#u-k,.tk span,.win{font-variant-numeric:tabular-nums}
 </style>
+</head>
+<body>
 
+<main id="top">
 <div class="hero"><div class="wrap">
-  <header><div class="wm" aria-label="Pàdé">P<i>à</i>d<i>é</i></div><a class="toplink" href="#how">See how it works</a></header>
+  <header role="banner"><div class="wm"><span class="sr">Pàdé</span><span aria-hidden="true">P<i>à</i>d<i>é</i></span></div><a class="toplink" href="#how">See how it works</a></header>
   <div class="in">
     <div class="hl">
       <h1 class="big" aria-label="Meet someone new in Lagos. Five minutes at a time."><span class="wi" style="--i:0">Meet</span> <span class="wi" style="--i:1">someone</span> <span class="wi" style="--i:2">new</span> <span class="wi" style="--i:3">in</span> <span class="wi" style="--i:4">Lagos.</span> <span class="gold"><span class="wi" style="--i:6">Five</span> <span class="wi" style="--i:7">minutes</span> <span class="wi" style="--i:8">at</span> <span class="wi" style="--i:9">a</span> <span class="wi" style="--i:10">time.</span></span></h1>
@@ -286,7 +317,7 @@ footer .wm{font-size:26px;color:var(--ink)}
     </div>
     <div class="cw fi" style="--d:700ms">
       <div class="call" id="call" data-s="idle" role="group" aria-label="A sped-up demo of a five minute round">
-        <div class="cb" aria-hidden="true"><i class="bl b1"></i><i class="bl b2"></i></div>
+        <div class="cb" aria-hidden="true"><i class="bl b1"></i><i class="bl b2"></i></div><div class="cb sh" aria-hidden="true"><i class="bl b1"></i><i class="bl b2"></i></div>
         <div class="ln" aria-hidden="true"><i id="cp"></i></div>
         <div class="ct"><span class="lv">Round</span><b id="ck">0:00</b></div>
         <p class="cs" id="cs">Profile hidden.</p>
@@ -330,7 +361,7 @@ footer .wm{font-size:26px;color:var(--ink)}
   <p class="label g" id="fl">Nothing to lose</p>
   <h2 class="cd" id="h-five">Five minutes. One buzzer.</h2>
   <p class="lead">Three times, at moments nobody can predict, the screen turns red for about 18 seconds. That&rsquo;s when the buzzer works. <b>Press it and you&rsquo;re on to the next person.</b> No explanation, no goodbye.</p>
-  <div class="bar" id="bar" aria-label="A five minute round: the buzzer is locked until 1:20, then three hidden windows open at random"><div class="safe"></div><div class="head" id="head" tabindex="0" role="slider" aria-label="Round time" aria-valuemin="0" aria-valuemax="299" aria-valuenow="0"><b id="ht">0:00</b></div></div>
+  <div class="bar" id="bar" role="group" aria-label="A five minute round: the buzzer is locked until 1:20, then three hidden windows open at random"><div class="safe"></div><div class="head" id="head" tabindex="0" role="slider" aria-label="Round time" aria-valuemin="0" aria-valuemax="299" aria-valuenow="0"><b id="ht">0:00</b></div></div>
   <div class="tk" aria-hidden="true"><span style="left:0">0:00</span><span style="left:26.67%">1:20</span><span style="left:100%">5:00</span></div>
 </div></section>
 
@@ -361,7 +392,9 @@ footer .wm{font-size:26px;color:var(--ink)}
   <p class="cl2">A new person in Lagos every five minutes. Nothing to lose. Fridays, 9 to 10pm Lagos time.</p>
 </div></section>
 
-<footer><div class="wrap" style="display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;width:100%"><span class="wm" aria-label="Pàdé">P<i>à</i>d<i>é</i></span><span>Made in Lagos. Na Friday we dey.</span></div></footer>
+</main>
+
+<footer><div class="wrap" style="display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;width:100%"><span class="wm"><span class="sr">Pàdé</span><span aria-hidden="true">P<i>à</i>d<i>é</i></span></span><span>Made in Lagos. Na Friday we dey.</span></div></footer>
 
 <script>
 (function(){
@@ -496,7 +529,7 @@ head.addEventListener('keydown',function(e){var d={ArrowRight:5,ArrowUp:5,ArrowL
    else{t+=dt*SP;
     if(t>=300){t=300;hold=3.6;set('reveal','You clicked. Contacts unlock.')}
     else{var L=inW();if(L&&st!=='live')set('live','Buzzer open.');else if(!L&&st==='live'){set('idle','Profile hidden.');msgT=0}}}
-   ck.textContent=fmt(t);cp.style.width=(t/3)+'%'}
+   ck.textContent=fmt(t);cp.style.transform='scaleX('+(t/300)+')'}
   requestAnimationFrame(tick)}
  requestAnimationFrame(tick);
 })();
@@ -538,4 +571,8 @@ head.addEventListener('keydown',function(e){var d={ArrowRight:5,ArrowUp:5,ArrowL
   if(reduce||!('IntersectionObserver' in window)){sec.classList.add('go');return}
   var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){sec.classList.add('go');io.disconnect()}},{threshold:.15,rootMargin:'0px 0px -8% 0px'});io.observe(sec)})
 })();
+(function(){Array.prototype.forEach.call(document.querySelectorAll('.qb'),function(b,i){var r=b.parentNode.querySelector('.rp');if(!r)return;r.id='ans'+i;b.setAttribute('aria-controls',r.id)})})();
 </script>
+
+</body>
+</html>
